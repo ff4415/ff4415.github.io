@@ -18,7 +18,7 @@ email: ff4415@qq.com
 description: > # this means to ignore newlines until "baseurl:"
   Whenever you feel like criticizing anyone, just remember that 
   all the pepole in this world haven't had the advantages that you've had.
-  ---- The Great Gatsby 
+                                                 ---- The Great Gatsby 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
