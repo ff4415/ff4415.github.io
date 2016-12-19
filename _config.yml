@@ -26,7 +26,7 @@ github_username:  ff4415
 
 # Build settings
 markdown: kramdown
-theme: minimal
+theme: minima
 gems:
   - jekyll-feed
 exclude:
