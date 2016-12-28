@@ -1,142 +1,181 @@
 $(function() {
+    var chart;
+    $.when(
+        $.getJSON("/assets/data/top-500-city-in-Indian/city_number_Of_State.json"),
+        $.getJSON("/assets/data/top-500-city-in-Indian/literacy_rate_total_of_states.json")
+    ).done(function(city_number_Of_state,literacy_rate_total_of_states){
+        city_number_Of_state = city_number_Of_state[2]['responseJSON'];
+        literacy_rate_total_of_states = literacy_rate_total_of_states[2]['responseJSON'];
 
-  var cities_of_state = [{
-    "woe-name": "Uttar Pradesh",
-    "value": 63
-  }, {
-    "woe-name": "West Bengal",
-    "value": 61
-  }, {
-    "woe-name": "Maharashtra",
-    "value": 44
-  }, {
-    "woe-name": "Andhra Pradesh",
-    "value": 42
-  }, {
-    "woe-name": "Tamil Nadu",
-    "value": 32
-  }, {
-    "woe-name": "Madhya Pradesh",
-    "value": 32
-  }, {
-    "woe-name": "Gujarat",
-    "value": 29
-  }, {
-    "woe-name": "Rajasthan",
-    "value": 29
-  }, {
-    "woe-name": "Bihar",
-    "value": 27
-  }, {
-    "woe-name": "Karnataka",
-    "value": 26
-  }, {
-    "woe-name": "Haryana",
-    "value": 20
-  }, {
-    "woe-name": "Punjab",
-    "value": 16
-  }, {
-    "woe-name": "Delhi",
-    "value": 15
-  }, {
-    "woe-name": "Jharkhand",
-    "value": 10
-  }, {
-    "woe-name": "Orissa",
-    "value": 10
-  }, {
-    "woe-name": "Chhattisgarh",
-    "value": 9
-  }, {
-    "woe-name": "Kerala",
-    "value": 7
-  }, {
-    "woe-name": "Uttarakhand",
-    "value": 6
-  }, {
-    "woe-name": "Assam",
-    "value": 4
-  }, {
-    "woe-name": "Jammu and Kashmir",
-    "value": 3
-  }, {
-    "woe-name": "Puducherry",
-    "value": 2
-  }, {
-    "woe-name": "Meghalaya",
-    "value": 1
-  }, {
-    "woe-name": "Nagaland",
-    "value": 1
-  }, {
-    "woe-name": "Tripura",
-    "value": 1
-  }, {
-    "woe-name": "Himachal Pradesh",
-    "value": 1
-  }, {
-    "woe-name": "Uttaranchal",
-    "value": 1
-  }, {
-    "woe-name": "Manipur",
-    "value": 1
-  }, {
-    "woe-name": "Andaman and Nicobar",
-    "value": 1
-  }, {
-    "woe-name": "Mizoram",
-    "value": 1
-  }];
+        // Initiate the chart
+        chart = Highcharts.mapChart('container', {
 
-  // Initiate the chart
-  Highcharts.mapChart('container', {
+            title: {
+                text: 'Top 500 cities in Indian'
+            },
 
-    title: {
-      text: 'State by number of cities'
-    },
+            subtitle: {
+                text: 'state by numbers of city ',
+            },
 
-    legend: {
-      layout: 'vertical',
-      borderWidth: 0,
-      backgroundColor: 'rgba(255,255,255,0.85)',
-      floating: true,
-      verticalAlign: 'middle',
-      align: 'right',
-      x: -50,
-      y: 100,
-    },
-    tooltip: {
-      backgroundColor: 'none',
-      borderWidth: 0,
-      shadow: false,
-      padding: 0,
-      headerFormat: '<span style="font-size:10px">number of cities:</span><br/>',
-      pointFormat: '{point.name}: <b>{point.value} cities</b><br/>',
-      footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
-      positioner: function() {
-        return {
-          x: 480,
-          y: 300
-        };
-      }
-    },
+            legend: {
+                layout: 'vertical',
+                borderWidth: 0,
+                backgroundColor: 'rgba(255,255,255,0.85)',
+                floating: true,
+                verticalAlign: 'middle',
+                align: 'right',
+                x: -50,
+                y: 100,
+            },
 
-    colorAxis: {
-      min: 1,
-      max: 70,
-      type: 'linear'
-    },
+            tooltip: {
+                backgroundColor: 'none',
+                borderWidth: 0,
+                shadow: false,
+                padding: 0,
+                headerFormat: '<span style="font-size:10px">{series.name}:</span><br/>',
+                pointFormat: '{point.name}: <b>{point.value} cities</b><br/>',
+                footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
+                positioner: function() {
+                    return {
+                        x: 480,
+                        y: 300
+                    };
+                }
+            },
 
-    series: [{
-      data: cities_of_state,
-      mapData: Highcharts.maps['countries/in/custom/in-all-andaman-and-nicobar'],
-      joinBy: 'woe-name',
-      states: {
-        hover: {
-          color: '#a4edba'
-        }
-      }
-    }]
-  });
-});
+            colorAxis: {
+                min: 1,
+                max: 70,
+                type: 'linear'
+            },
+
+            series: [{
+                name: 'numbers_of_city_in_the_state',
+                data: city_number_Of_state,
+                mapData: Highcharts.maps['countries/in/custom/in-all-andaman-and-nicobar'],
+                joinBy: 'woe-name',
+                states: {
+                    hover: {
+                        color: '#a4edba'
+                    }
+                }
+            }],
+
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        menuItems: [{
+                            text: 'show state by numbers of city ',
+                            onclick: function () {
+                                chart.update({
+                                    subtitle: {
+                                        text: 'state by numbers of city',
+                                    },
+
+                                    legend: {
+                                        layout: 'vertical',
+                                        borderWidth: 0,
+                                        backgroundColor: 'rgba(255,255,255,0.85)',
+                                        floating: true,
+                                        verticalAlign: 'middle',
+                                        align: 'right',
+                                        x: -50,
+                                        y: 100,
+                                    },
+
+                                        series:[{
+                                            name: 'numbers_of_city_in_the_state',
+                                            data: city_number_Of_state,
+                                            mapdata: Highcharts.maps['countries/in/custom/in-all-andaman-and-nicobar'],
+                                            joinby: 'woe-name',
+                                            states: {
+                                                hover: {
+                                                    color: '#a4edba'
+                                                }
+                                            },
+                                            tooltip: {
+                                                backgroundColor: 'none',
+                                                borderWidth: 0,
+                                                shadow: false,
+                                                padding: 0,
+                                                headerFormat: '<span style="font-size:10px">{series.name}:</span><br/>',
+                                                pointFormat: '{point.name}: <b>{point.value} cities</b><br/>',
+                                                footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
+                                                positioner: function() {
+                                                    return {
+                                                        x: 480,
+                                                        y: 300
+                                                    };
+                                                }
+                                            }
+                                        }],
+                                    });
+                                    chart.colorAxis[0].update({
+                                        min: 1,
+                                        max: 70,
+                                        type: 'linear',
+                                        maxColor: '#003399'
+                                    });
+                                }
+                            }, {
+                                text: 'show state by literacy_rate_total',
+                                onclick: function () {
+                                    chart.update({
+                                        subtitle: {
+                                            text: 'state by literacy_rate_total',
+                                        },
+
+                                        legend: {
+                                            layout: 'vertical',
+                                            borderWidth: 0,
+                                            backgroundColor: 'rgba(255,255,255,0.85)',
+                                            floating: true,
+                                            verticalAlign: 'middle',
+                                            align: 'right',
+                                            x: -50,
+                                            y: 100,
+                                        },
+                                            series :[{
+                                                name: 'numbers of city in the state',
+                                                data: literacy_rate_total_of_states,
+                                                mapdata: Highcharts.maps['countries/in/custom/in-all-andaman-and-nicobar'],
+                                                joinby: 'woe-name',
+                                                states: {
+                                                    hover: {
+                                                        color: '#a4edba'
+                                                    }
+                                                },
+                                                tooltip: {
+                                                    backgroundColor: 'none',
+                                                    borderWidth: 0,
+                                                    shadow: false,
+                                                    padding: 0,
+                                                    headerFormat: '<span style="font-size:10px">literacy_rate_total_of_states:</span><br/>',
+                                                    pointFormat: '{point.name}: <b>{point.value:.3f}</b>  total<br/>',
+                                                    footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
+                                                    positioner: function() {
+                                                        return {
+                                                            x: 480,
+                                                            y: 300
+                                                        };
+                                                    }
+                                                }
+                                            }]
+                                        });
+                                        chart.colorAxis[0].update({
+                                            min: 60,
+                                            max: 100,
+                                            type: 'linear',
+                                            maxColor: '#004d00'
+                                        });
+                                    },
+                                    separator: false
+                                }]
+                            }
+                        }
+                    }
+                });
+            });
+        });
