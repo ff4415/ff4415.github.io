@@ -3,4 +3,7 @@ layout: page
 title: About me 
 ---
 
-This is a static page. It could be an 'about page' if you'd like.
+> Theme modified from [kasper](https://jekyllthemes.io/theme/14274339/kasper) for Jekyll.
+> Title background image belongs to mks.[ mks [pixiv] ](http://www.pixiv.net/member_illust.php?mode=medium&illust_id=47152268)
+
+Masterpiece!  Light life brightened.
