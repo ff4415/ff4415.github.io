@@ -3,7 +3,7 @@ $(function() {
         map = H.maps['countries/in/custom/in-all-andaman-and-nicobar'],
         chart;
     $.when(
-        $.getJSON("/assets/data/top-500-city-in-Indian/city_number_Of_state.json"),
+        $.getJSON("/assets/data/top-500-city-in-Indian/city_number_of_state.json"),
         $.getJSON("/assets/data/top-500-city-in-Indian/literacy_rate_total_of_states.json"),
         $.getJSON("/assets/data/top-500-city-in-Indian/female_graduates_of_states.json"),
         $.getJSON("/assets/data/top-500-city-in-Indian/total_graduates_of_states.json"),
