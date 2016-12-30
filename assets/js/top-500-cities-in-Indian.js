@@ -68,6 +68,10 @@ $(function() {
 
         // Initiate the chart
         chart = Highcharts.mapChart('container', {
+            chart: {
+                width: 800,
+                height: 500
+            },
             mapNavigation: {
                 enabled: true,
                 buttonOptions: {
@@ -135,7 +139,6 @@ $(function() {
                 data: city_number_Of_state,
                 mapData: map,
                 joinBy: 'woe-name',
-                // allowPointSelect: true,
                 states: {
                     hover: {
                         color: '#a4edba'
@@ -618,7 +621,7 @@ $(function() {
                                     name: 'top_125_city_by_total_graduates_ratio',
                                     data: data_top_125_city_by_total_graduates_ratio,
                                     minSize: 1,
-                                    maxSize: '6%',
+                                    maxSize: '10%',
                                     dataLabels: {
                                         enabled: false,
                                         format: '{point.city}'
@@ -664,7 +667,7 @@ $(function() {
                                     name: 'tail_125_city_by_total_graduates_ratio',
                                     data: data_tail_125_city_by_total_graduates_ratio,
                                     minSize: 1,
-                                    maxSize: '10%',
+                                    maxSize: '6%',
                                     dataLabels: {
                                         enabled: false,
                                         format: '{point.city}'
