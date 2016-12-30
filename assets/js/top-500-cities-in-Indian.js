@@ -8,8 +8,13 @@ $(function() {
         $.getJSON("/assets/data/top-500-city-in-Indian/female_graduates_of_states.json"),
         $.getJSON("/assets/data/top-500-city-in-Indian/total_graduates_of_states.json"),
         $.getJSON("/assets/data/top-500-city-in-Indian/city_population.json"),
-        $.getJSON("/assets/data/top-500-city-in-Indian/effective_literacy_rate_each_city.json")
-    ).done(function(city_number_Of_state,literacy_rate_total_of_states, female_graduates_of_states,total_graduates_of_states,city_population,effective_literacy_rate_each_city){
+        $.getJSON("/assets/data/top-500-city-in-Indian/top_in_effective_literacy_rate_total.json"),
+        $.getJSON("/assets/data/top-500-city-in-Indian/tail_in_effective_literacy_rate_total.json"),
+        $.getJSON("/assets/data/top-500-city-in-Indian/top_125_city_by_female_graduates.json"),
+        $.getJSON("/assets/data/top-500-city-in-Indian/tail_125_city_by_female_graduates.json"),
+        $.getJSON("/assets/data/top-500-city-in-Indian/top_125_city_by_total_graduates_ratio.json"),
+        $.getJSON("/assets/data/top-500-city-in-Indian/tail_125_city_by_total_graduates_ratio.json")
+    ).done(function(city_number_Of_state,literacy_rate_total_of_states, female_graduates_of_states,total_graduates_of_states,city_population,top_in_effective_literacy_rate_total,tail_in_effective_literacy_rate_total,top_125_city_by_female_graduates,tail_125_city_by_female_graduates,top_125_city_by_total_graduates_ratio,tail_125_city_by_total_graduates_ratio){
 
         city_number_Of_state = city_number_Of_state[2]['responseJSON'];
 
@@ -25,13 +30,41 @@ $(function() {
             data_city_population.push(this);
         });
 
-        var data_effective_literacy_rate_each_city = [];
-        $.each(effective_literacy_rate_each_city[2]['responseJSON'], function() {
-            this.z = this.rank;
-            data_effective_literacy_rate_each_city.push(this);
+        var data_top_in_effective_literacy_rate_total = [];
+        $.each(top_in_effective_literacy_rate_total[2]['responseJSON'], function() {
+            this.z = this.effective_literacy_rate_total;
+            data_top_in_effective_literacy_rate_total.push(this);
         });
-        console.log(effective_literacy_rate_each_city[2]['responseJSON']);
 
+        var data_tail_in_effective_literacy_rate_total = [];
+        $.each(tail_in_effective_literacy_rate_total[2]['responseJSON'], function() {
+            this.z = this.effective_literacy_rate_total;
+            data_tail_in_effective_literacy_rate_total.push(this);
+        });
+
+        var data_top_125_city_by_female_graduates = [];
+        $.each(top_125_city_by_female_graduates[2]['responseJSON'], function() {
+            this.z = this.female_graduates_ratio;
+            data_top_125_city_by_female_graduates.push(this);
+        });
+
+        var data_tail_125_city_by_female_graduates = [];
+        $.each(tail_125_city_by_female_graduates[2]['responseJSON'], function() {
+            this.z = this.female_graduates_ratio;
+            data_tail_125_city_by_female_graduates.push(this);
+        });
+
+        var data_top_125_city_by_total_graduates_ratio = [];
+        $.each(top_125_city_by_total_graduates_ratio[2]['responseJSON'], function() {
+            this.z = this.total_graduates_ratio;
+            data_top_125_city_by_total_graduates_ratio.push(this);
+        });
+
+        var data_tail_125_city_by_total_graduates_ratio = [];
+        $.each(tail_125_city_by_total_graduates_ratio[2]['responseJSON'], function() {
+            this.z = this.total_graduates_ratio;
+            data_tail_125_city_by_total_graduates_ratio.push(this);
+        });
 
         // Initiate the chart
         chart = Highcharts.mapChart('container', {
@@ -102,6 +135,7 @@ $(function() {
                 data: city_number_Of_state,
                 mapData: map,
                 joinBy: 'woe-name',
+                // allowPointSelect: true,
                 states: {
                     hover: {
                         color: '#a4edba'
@@ -131,21 +165,7 @@ $(function() {
                                         y: 100,
                                     },
 
-                                    tooltip: {
-                                        backgroundColor: 'none',
-                                        borderWidth: 0,
-                                        shadow: false,
-                                        padding: 0,
-                                        headerFormat: '<span style="font-size:10px">{series.name}:</span><br/>',
-                                        pointFormat: '{point.name}: <b>{point.value} cities</b><br/>',
-                                        footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
-                                        positioner: function() {
-                                            return {
-                                                x: 480,
-                                                y: 300
-                                            };
-                                        }
-                                    },
+
 
                                     series:[{
                                         name: 'numbers_of_city_in_the_state',
@@ -155,6 +175,21 @@ $(function() {
                                         states: {
                                             hover: {
                                                 color: '#a4edba'
+                                            }
+                                        },
+                                        tooltip: {
+                                            backgroundColor: 'none',
+                                            borderWidth: 0,
+                                            shadow: false,
+                                            padding: 0,
+                                            headerFormat: '<span style="font-size:10px">{series.name}:</span><br/>',
+                                            pointFormat: '{point.name}: <b>{point.value} cities</b><br/>',
+                                            footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
+                                            positioner: function() {
+                                                return {
+                                                    x: 480,
+                                                    y: 300
+                                                };
                                             }
                                         }
                                     }]
@@ -187,21 +222,7 @@ $(function() {
                                         y: 100,
                                     },
 
-                                    tooltip: {
-                                        backgroundColor: 'none',
-                                        borderWidth: 0,
-                                        shadow: false,
-                                        padding: 0,
-                                        headerFormat: '<span style="font-size:10px">literacy_rate_total_of_states:</span><br/>',
-                                        pointFormat: '{point.name}: <b>{point.value:.3f}</b>  total<br/>',
-                                        footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
-                                        positioner: function() {
-                                            return {
-                                                x: 480,
-                                                y: 300
-                                            };
-                                        }
-                                    },
+
 
                                     series :[{
                                         name: 'numbers of city in the state',
@@ -211,6 +232,21 @@ $(function() {
                                         states: {
                                             hover: {
                                                 color: '#a4edba'
+                                            }
+                                        },
+                                        tooltip: {
+                                            backgroundColor: 'none',
+                                            borderWidth: 0,
+                                            shadow: false,
+                                            padding: 0,
+                                            headerFormat: '<span style="font-size:10px">literacy_rate_total_of_states:</span><br/>',
+                                            pointFormat: '{point.name}: <b>{point.value:.3f}</b>  total<br/>',
+                                            footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
+                                            positioner: function() {
+                                                return {
+                                                    x: 480,
+                                                    y: 300
+                                                };
                                             }
                                         }
                                     }]
@@ -243,21 +279,7 @@ $(function() {
                                         y: 100,
                                     },
 
-                                    tooltip: {
-                                        backgroundColor: 'none',
-                                        borderWidth: 0,
-                                        shadow: false,
-                                        padding: 0,
-                                        headerFormat: '<span style="font-size:10px">female_graduates_of_states:</span><br/>',
-                                        pointFormat: '{point.name}: <b>{point.value:.3f}</b>  total<br/>',
-                                        footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
-                                        positioner: function() {
-                                            return {
-                                                x: 480,
-                                                y: 300
-                                            };
-                                        }
-                                    },
+
 
                                     series :[{
                                         name: 'female_graduates_of_states',
@@ -267,6 +289,21 @@ $(function() {
                                         states: {
                                             hover: {
                                                 color: '#a4edba'
+                                            }
+                                        },
+                                        tooltip: {
+                                            backgroundColor: 'none',
+                                            borderWidth: 0,
+                                            shadow: false,
+                                            padding: 0,
+                                            headerFormat: '<span style="font-size:10px">female_graduates_of_states:</span><br/>',
+                                            pointFormat: '{point.name}: <b>{point.value:.3f}</b>  total<br/>',
+                                            footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
+                                            positioner: function() {
+                                                return {
+                                                    x: 480,
+                                                    y: 300
+                                                };
                                             }
                                         }
                                     }]
@@ -300,21 +337,7 @@ $(function() {
                                         y: 100,
                                     },
 
-                                    tooltip: {
-                                        backgroundColor: 'none',
-                                        borderWidth: 0,
-                                        shadow: false,
-                                        padding: 0,
-                                        headerFormat: '<span style="font-size:10px">total_graduates_of_states:</span><br/>',
-                                        pointFormat: '{point.name}: <b>{point.value:.3f}</b>  total<br/>',
-                                        footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
-                                        positioner: function() {
-                                            return {
-                                                x: 480,
-                                                y: 300
-                                            };
-                                        }
-                                    },
+
 
                                     series :[{
                                         name: 'total_graduates_of_states',
@@ -325,6 +348,21 @@ $(function() {
                                         states: {
                                             hover: {
                                                 color: '#a4edba'
+                                            }
+                                        },
+                                        tooltip: {
+                                            backgroundColor: 'none',
+                                            borderWidth: 0,
+                                            shadow: false,
+                                            padding: 0,
+                                            headerFormat: '<span style="font-size:10px">total_graduates_of_states:</span><br/>',
+                                            pointFormat: '{point.name}: <b>{point.value:.3f}</b>  total<br/>',
+                                            footerFormat: '<span style="font-size:10px">Source: kaggle.com by ArijitMukherjee </span><br/>',
+                                            positioner: function() {
+                                                return {
+                                                    x: 480,
+                                                    y: 300
+                                                };
                                             }
                                         }
                                     }]
@@ -338,7 +376,8 @@ $(function() {
                                     type: 'linear',
                                     maxColor: '#b3b300'
                                 });
-                            }
+                            },
+                            separator: false
                         }, {
                             text: 'show cities by city_population',
                             onclick: function () {
@@ -386,14 +425,13 @@ $(function() {
                             },
                             separator: false
                         }, {
-                            text: 'show cities by effective_literacy_rate_each_city',
+                            text: 'show top 125 cities by effective_literacy_rate_each_city',
                             onclick: function () {
                                 chart.series[1].update({
                                     type: 'mapbubble',
-                                    name: 'effective_literacy_rate_each_city',
-                                    data: data_effective_literacy_rate_each_city,
-                                    minSize: 1,
-                                    maxSize: '12%',
+                                    name: 'top_125_effective_literacy_rate_each_city',
+                                    data: data_top_in_effective_literacy_rate_total,
+                                    maxSize: '10%',
                                     dataLabels: {
                                         enabled: false,
                                         format: '{point.city}'
@@ -404,12 +442,12 @@ $(function() {
                                         pointFormat: '{point.city}, {point.state_name}<br>' +
                                         'Lat: {point.lat}<br>' +
                                         'Lon: {point.lon}<br>' +
-                                        'effective_literacy_rate: {point.effective_literacy_rate_total:.3f}% total<br>'
+                                        'effective_literacy_rate: {point.effective_literacy_rate_total:.2f}% total<br>'
                                     }
                                     });
                                 chart.update({
                                     subtitle: {
-                                        text: 'cities by effective_literacy_rate_each_city'
+                                        text: 'Top 125 cities by effective_literacy_rate_each_city'
                                     },
                                     legend: {
                                         enabled: false,
@@ -430,6 +468,246 @@ $(function() {
                                     }]
                                 });
 
+                            },
+                            separator: false
+                        }, {
+                            text: 'show last 125 cities by effective_literacy_rate_each_city',
+                            onclick: function () {
+                                chart.series[1].update({
+                                    type: 'mapbubble',
+                                    name: 'last_125_effective_literacy_rate_each_city',
+                                    data: data_tail_in_effective_literacy_rate_total,
+                                    minSize: 1,
+                                    maxSize: '6%',
+                                    dataLabels: {
+                                        enabled: false,
+                                        format: '{point.city}'
+                                    },
+                                    color: H.getOptions().colors[3],
+                                    tooltip: {
+                                        headerFormat: '<span style="font-size:10px">city_name,state_name:</span><br/>',
+                                        pointFormat: '{point.city}, {point.state_name}<br>' +
+                                        'Lat: {point.lat}<br>' +
+                                        'Lon: {point.lon}<br>' +
+                                        'effective_literacy_rate: {point.effective_literacy_rate_total:.2f}% total<br>'
+                                    }
+                                    });
+                                chart.update({
+                                    subtitle: {
+                                        text: 'last 125 cities by effective_literacy_rate_each_city'
+                                    },
+                                    legend: {
+                                        enabled: false,
+                                    },
+                                    tooltip: {
+                                        backgroundColor: ' rgba(247,247,247,0.85)',
+                                        padding: 8,
+                                        positioner: null
+                                    },
+                                    series: [{
+                                        name: 'Basemap',
+                                        mapdata: map,
+                                        data: null,
+                                        borderColor: '#606060',
+                                        nullColor: 'rgba(200, 200, 200, 0.2)',
+                                        showInLegend: false
+
+                                    }]
+                                });
+
+                            },
+                            separator: false
+                        }, {
+                            text: 'show top 125 cities by female_graduates',
+                            onclick: function () {
+                                chart.series[1].update({
+                                    type: 'mapbubble',
+                                    name: 'top_125_city_by_female_graduates',
+                                    data: data_top_125_city_by_female_graduates,
+                                    maxSize: '10%',
+                                    dataLabels: {
+                                        enabled: false,
+                                        format: '{point.city}'
+                                    },
+                                    color: H.getOptions().colors[4],
+                                    tooltip: {
+                                        headerFormat: '<span style="font-size:10px">city_name,state_name:</span><br/>',
+                                        pointFormat: '{point.city}, {point.state_name}<br>' +
+                                        'Lat: {point.lat}<br>' +
+                                        'Lon: {point.lon}<br>' +
+                                        'female_graduates_ratio: {point.female_graduates_ratio:.2f}% total<br>'
+                                    }
+                                    });
+                                chart.update({
+                                    subtitle: {
+                                        text: 'top 125 cities by female_graduates_ratio'
+                                    },
+                                    legend: {
+                                        enabled: false,
+                                    },
+                                    tooltip: {
+                                        backgroundColor: ' rgba(247,247,247,0.85)',
+                                        padding: 8,
+                                        positioner: null
+                                    },
+                                    series: [{
+                                        name: 'Basemap',
+                                        mapdata: map,
+                                        data: null,
+                                        borderColor: '#606060',
+                                        nullColor: 'rgba(200, 200, 200, 0.2)',
+                                        showInLegend: false
+
+                                    }]
+                                });
+
+                            },
+                            separator: false
+                        }, {
+                            text: 'show last 125 cities by female_graduates',
+                            onclick: function () {
+                                chart.series[1].update({
+                                    type: 'mapbubble',
+                                    name: 'tail_125_city_by_female_graduates',
+                                    data: data_tail_125_city_by_female_graduates,
+                                    minSize: 1,
+                                    maxSize: '6%',
+                                    dataLabels: {
+                                        enabled: false,
+                                        format: '{point.city}'
+                                    },
+                                    color: H.getOptions().colors[5],
+                                    tooltip: {
+                                        headerFormat: '<span style="font-size:10px">city_name,state_name:</span><br/>',
+                                        pointFormat: '{point.city}, {point.state_name}<br>' +
+                                        'Lat: {point.lat}<br>' +
+                                        'Lon: {point.lon}<br>' +
+                                        'female_graduates_ratio: {point.female_graduates_ratio:.2f}% total<br>'
+                                    }
+                                    });
+                                chart.update({
+                                    subtitle: {
+                                        text: 'last 125 cities by female_graduates_ratio'
+                                    },
+                                    legend: {
+                                        enabled: false,
+                                    },
+                                    tooltip: {
+                                        backgroundColor: ' rgba(247,247,247,0.85)',
+                                        padding: 8,
+                                        positioner: null
+                                    },
+                                    series: [{
+                                        name: 'Basemap',
+                                        mapdata: map,
+                                        data: null,
+                                        borderColor: '#606060',
+                                        nullColor: 'rgba(200, 200, 200, 0.2)',
+                                        showInLegend: false
+
+                                    }]
+                                });
+
+                            },
+                            separator: false
+                        }, {
+                            text: 'show top 125 cities by total_graduates_ratio',
+                            onclick: function () {
+                                chart.series[1].update({
+                                    type: 'mapbubble',
+                                    name: 'top_125_city_by_total_graduates_ratio',
+                                    data: data_top_125_city_by_total_graduates_ratio,
+                                    minSize: 1,
+                                    maxSize: '6%',
+                                    dataLabels: {
+                                        enabled: false,
+                                        format: '{point.city}'
+                                    },
+                                    color: H.getOptions().colors[6],
+                                    tooltip: {
+                                        headerFormat: '<span style="font-size:10px">city_name,state_name:</span><br/>',
+                                        pointFormat: '{point.city}, {point.state_name}<br>' +
+                                        'Lat: {point.lat}<br>' +
+                                        'Lon: {point.lon}<br>' +
+                                        'total_graduates_ratio: {point.total_graduates_ratio:.2f}% total<br>'
+                                    }
+                                    });
+                                chart.update({
+                                    subtitle: {
+                                        text: 'top 125 cities by total_graduates_ratio'
+                                    },
+                                    legend: {
+                                        enabled: false,
+                                    },
+                                    tooltip: {
+                                        backgroundColor: ' rgba(247,247,247,0.85)',
+                                        padding: 8,
+                                        positioner: null
+                                    },
+                                    series: [{
+                                        name: 'Basemap',
+                                        mapdata: map,
+                                        data: null,
+                                        borderColor: '#606060',
+                                        nullColor: 'rgba(200, 200, 200, 0.2)',
+                                        showInLegend: false
+                                    }]
+                                });
+
+                            },
+                            separator: false
+                        }, {
+                            text: 'show last 125 cities by total_graduates_ratio',
+                            onclick: function () {
+                                chart.series[1].update({
+                                    type: 'mapbubble',
+                                    name: 'tail_125_city_by_total_graduates_ratio',
+                                    data: data_tail_125_city_by_total_graduates_ratio,
+                                    minSize: 1,
+                                    maxSize: '10%',
+                                    dataLabels: {
+                                        enabled: false,
+                                        format: '{point.city}'
+                                    },
+                                    color: H.getOptions().colors[7],
+                                    tooltip: {
+                                        headerFormat: '<span style="font-size:10px">city_name,state_name:</span><br/>',
+                                        pointFormat: '{point.city}, {point.state_name}<br>' +
+                                        'Lat: {point.lat}<br>' +
+                                        'Lon: {point.lon}<br>' +
+                                        'total_graduates_ratio: {point.total_graduates_ratio:.2f}% total<br>'
+                                    }
+                                    });
+                                chart.update({
+                                    subtitle: {
+                                        text: 'last 125 cities by total_graduates_ratio'
+                                    },
+                                    legend: {
+                                        enabled: false,
+                                    },
+                                    tooltip: {
+                                        backgroundColor: ' rgba(247,247,247,0.85)',
+                                        padding: 8,
+                                        positioner: null
+                                    },
+                                    series: [{
+                                        name: 'Basemap',
+                                        mapdata: map,
+                                        data: null,
+                                        borderColor: '#606060',
+                                        nullColor: 'rgba(200, 200, 200, 0.2)',
+                                        showInLegend: false
+                                    }]
+                                });
+
+                            },
+                            separator: false
+                        }, {
+                            text: 'Export to PNG (large)',
+                            onclick: function () {
+                                this.exportChart({
+                                    sourceHeight: 500
+                                });
                             },
                             separator: false
                         }]
