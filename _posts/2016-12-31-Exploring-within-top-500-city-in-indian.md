@@ -348,7 +348,6 @@ tail_125_city_by_total_graduates_ratio.to_json('tail_125_city_by_total_graduates
 
 Same story as above.  
 
-
-thanks for sharing.
+thanks for reading.
 
 More detailed map visit here [ff4415.github.io]({{  page.url }})
