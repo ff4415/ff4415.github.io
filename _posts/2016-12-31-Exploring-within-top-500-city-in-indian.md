@@ -54,7 +54,7 @@ print(check_output(["ls", "../input"]).decode("utf8"))
 data = pd.read_csv('../input/cities_r2.csv')
 ```
 
-##States by numbers of city in Top 500
+## States by numbers of city in Top 500
 
 
 ```python
@@ -76,7 +76,7 @@ UTTAR PRADESH state has  63 cities and  WEST BENGAL state has 61 cities almost c
 
 Refer back to the satellite map, There two states under the Himalayas with Suitable temperature and water source. The beautiful green on the satellite map impressed me.
 
-##states by literacy_rate_total of cities in Top 500
+## States by literacy_rate_total of cities in Top 500
 
 I did not use 'effective_literacy_rate_total' column,and use a ' literacy_rate_total' to rank cities.
 
@@ -128,7 +128,7 @@ MIZORAM 86.90%.
 
 The common I see is water. Two around the Himalayas and one located by the sea.  These numbers attenuate by a very Linear.  It seems mean something.
 
-##States by female_graduates percentage in entire female population of cities
+## States by female_graduates percentage in entire female population of cities
 
 
 ```python
