@@ -63,20 +63,22 @@ post_class: post-template
         <footer class="post-footer">
             <!-- If we want to display author's name and bio -->
             {% if site.author %}
-                <figure class="author-image">
-                    <a class="img" href="{{ site.baseurl }}" style="background-image: url(/assets/images/profile.png)">
+            <figure class="author-image">
+                <a class="img" href="{{ site.baseurl }}" style="background-image: url(/assets/images/profile.png)">
                     <span class="hidden">{{site.author}}'s Picture</span></a>
                 </figure>
                 <section class="author">
                     <!-- Author Name -->
                     <h4> {{ site.author }} </h4>
                     <!-- Author Bio -->
-                    <p>
-                        Whenever you feel like criticizing anyone, just remember that all the people in this world haven't had the advantages that you've had.
-                         ---- The Great Gatsby
-                    </p>
-                </section>
-            {% endif %}
+                    <p></p>
+                    <a class="icon-github" href="https://github.com/ff4415"
+                        onclick="window.open(this.href, 'github-profile', 'width=490,height=530');return false;">
+                    <!-- <span class="hidden">Github</span> -->
+                        <span>Github</span>
+                    </a>
+        </section>
+        {% endif %}
 
             <!-- Share links section -->
              {% include share.html %}
