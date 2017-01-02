@@ -2,6 +2,7 @@
 layout: post
 title: "Pie Chart and Pareto Chart Exercise"
 categories: Data_Analysis pandas
+cover: '/assets/images/47152268_p0.jpg'
 ---
 
  A pieChart and paretoChart exercise

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Pie Chart and Pareto Chart Exercise"
+title: "Data Metric Description"
 categories: Data_Analysis pandas
 ---
 
