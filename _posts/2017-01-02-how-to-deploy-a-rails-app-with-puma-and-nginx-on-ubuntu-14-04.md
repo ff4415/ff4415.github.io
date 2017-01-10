@@ -9,6 +9,7 @@ categories: rails  rails_deployment
 
 标签： rails 部署
 
+----------------
 
 > 原文链接：
 [how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04)
