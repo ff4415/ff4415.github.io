@@ -7,8 +7,7 @@ categories: rails  rails_deployment
 
 在Ubuntu 14.04 下使用PostgreSQL部署Ruby on Rails
 
-
- Rails 部署
+标签: Rails 部署
 
 -----------------------------
 
