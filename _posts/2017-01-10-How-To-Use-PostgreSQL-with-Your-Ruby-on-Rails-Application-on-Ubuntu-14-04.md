@@ -7,9 +7,9 @@ categories: rails  rails_deployment
 
 在Ubuntu 14.04 下使用PostgreSQL部署Ruby on Rails
 
- Rails 部署
+标签： rails 部署
 
----
+-------------------------------
 
 > 原文链接： [How To Use PostgreSQL with Your Ruby on Rails Application on Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04)
 
