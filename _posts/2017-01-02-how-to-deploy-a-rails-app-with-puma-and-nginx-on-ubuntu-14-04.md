@@ -3,11 +3,10 @@ layout: post
 title:  "在Ubuntu 14.04 上使用 Puma 和 Nginx 部署 Rails App"
 date:   2017-01-02 17:52:45 +0800
 categories: rails  rails_deployment
+cover: '/assets/images/47152268_p0.jpg'
 ---
 
-在Ubuntu 14.04 上使用 Puma 和 Nginx 部署 Rails App
-
-标签： rails 部署
+`Rails` `部署`
 
 ----------------
 
