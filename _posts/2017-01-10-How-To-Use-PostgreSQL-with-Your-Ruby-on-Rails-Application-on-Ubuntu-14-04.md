@@ -36,7 +36,7 @@ Ruby on Rails 使用sqlite3 作为默认数据库。在很多情况下sqlite3都
 
 然后安装PostgreSQL和它的开发库:
 
-`$ sudo apt-get install psotgresql postgresql-contrib libpq-dev`
+`$ sudo apt-get install postgresql postgresql-contrib libpq-dev`
 
 PostgreSQL安装好了，不过你还需要创建一个新的数据库账号来给你的Rails应用程序使用。
 
