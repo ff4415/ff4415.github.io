@@ -1,0 +1,111 @@
+body,html {
+    height: 100%;
+    margin: 0px;
+}
+
+#container {
+    height: 510px;
+    margin: 0px;
+}
+
+div#tip {
+    top: auto;
+    bottom: 25px;
+}
+
+#tip {
+    background-color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    right: 10px;
+    top: 20px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    line-height: 30px;
+}
+
+#panel {
+    position: absolute;
+    background-color: white;
+    max-height: 80%;
+    overflow-y: auto;
+    z-index: 100;
+    top: 0px;
+    right: 10px;
+    width: 250px;
+    border: solid 1px silver;
+}
+
+input {
+    width: 120px;
+}
+
+.amap-lib-transfer .plan dt.end .beforedt, .amap-lib-transfer .plan dt.start .beforedt, .amap-lib-transfer .plan dt.via .beforedt {
+    margin-top: -10px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    color: #FFF;
+    background-image: url(http://webapi.amap.com/theme/v1.3/images/newpc/diricon.png);
+}
+
+.amap-lib-transfer .plan dt.start .beforedt {
+    background-position: -47px -104px;
+}
+
+.amap-lib-transfer>.plan dt>.afterdt {
+    height: 100%;
+}
+
+.amap-lib-transfer .plan dt.walk .beforedt {
+    left: -27px;
+    width: 10px;
+    height: 10px;
+    margin-top: -6px;
+    border: 2px solid #ddd;
+}
+
+.amap-lib-transfer .plan dd .afterdd, .amap-lib-transfer .plan dt .afterdt, .amap-lib-transfer .plan dt .beforedt {
+    z-index: 1;
+    position: absolute;
+}
+
+.amap-lib-transfer .plan dt:first-child {
+    border-top: 1px solid #f0f0f0;
+
+}
+
+.amap-lib-transfer .plan dd, .amap-lib-transfer .plan dt {
+    position: relative;
+    margin-left: 35px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.amap-call, .amap-lib-transfer dt {
+    cursor: pointer;
+}
+
+dt {
+    display: block;
+}
+
+.amap-lib-transfer .plan>dt .beforedt {
+    top: 50%;
+}
+
+.amap-lib-transfer .plan dt .beforedt {
+    left: -30px;
+    border-radius: 50%;
+    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-indent: 0;
+    text-align: center;
+    font-size: 12px;
+    z-index: 10;
+}
+
+.amap-lib-transfer .plan dd.subway.subwayline2 .afterdd, .amap-lib-transfer .plan dt.subway.subwayline2 .afterdt, .amap-lib-transfer .plan dt.subwayline2 span.line, .amap-lib-transfer span.subwayline2 {
+        background-color: #5591ce;
+}
