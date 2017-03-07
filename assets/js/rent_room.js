@@ -18,7 +18,7 @@ $(function () {
 
     centerMarker= new AMap.Marker({
         map: map,
-        icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_r.png',
+        icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_r.png',
         cursor: 'move',
         draggable: true,
         raiseOnDrag: true,
@@ -35,7 +35,7 @@ $(function () {
 
         $.each(data, function() {
             marker = new AMap.Marker({
-                icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
+                icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
                 position: [this.lon,this.lat],
                 map: map
             });
