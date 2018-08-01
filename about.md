@@ -1,10 +1,7 @@
 ---
 layout: page
 title: About me
-<<<<<<< HEAD
 cover: '/assets/images/47152268_p0.jpg'
-=======
->>>>>>> 84db257559b26e5108a33c3fddf5495a7d613316
 ---
 
 > Theme modified from [kasper](https://jekyllthemes.io/theme/14274339/kasper) for Jekyll.
