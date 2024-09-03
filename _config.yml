@@ -1,4 +1,4 @@
-name: FF4415
+title: FF4415
 description: to boldly go where no one has gone before
 meta_description: "FF4415. to boldly go where no one has gone before"
 
@@ -9,7 +9,7 @@ paginate: 15
 baseurl: /
 domain_name: 'https://ff4415.github.io'
 google_analytics: 'UA-89457033-1'
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 # Details for the RSS feed generator
 url:            'https://ff4415.github.io'
